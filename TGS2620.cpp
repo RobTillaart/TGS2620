@@ -43,7 +43,7 @@ void TGS2620::calibrate(float a, float b)
 float TGS2620::getPPM(uint8_t reads)
 {
   uint32_t rawRLoad = 0;
-  if reads == 0) reads = 1;
+  if (reads == 0) reads = 1;
   for (int r = 0; r < reads; r++)
   {
     rawRload += analogRead(_analogPin);
