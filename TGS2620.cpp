@@ -46,9 +46,9 @@ float TGS2620::getPPM(uint8_t reads)
   if (reads == 0) reads = 1;
   for (int r = 0; r < reads; r++)
   {
-    rawRload += analogRead(_analogPin);
+    rawRLoad += analogRead(_analogPin);
   }
-  rawRload /= reads;
+  rawRLoad /= reads;
 
   _lastRead = millis();
   //  formula page 2 - optimize?

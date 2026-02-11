@@ -65,9 +65,8 @@ and any other applications that may cause personal injury due to the product's f
 - https://github.com/RobTillaart/TGS2620 - this lib
 - https://github.com/zigpot/tgs2600-on-arduino - related sensor TGS2600
 
-Calibration story for TGS2600 sensor (close relative) - very useful.
-//  https://zigpot.wordpress.com/2021/09/29/setting-up-gas-sensor-for-microcontroller/
-
+Calibration story for TGS2600 sensor (close relative) - very useful
+- https://zigpot.wordpress.com/2021/09/29/setting-up-gas-sensor-for-microcontroller/
 
 Other environmental sensors
 - https://github.com/RobTillaart/MTP40C - CO2 sensor
@@ -94,15 +93,17 @@ on can add one device per analog port or use a multiplex chip like these.
 
 - **TGS2620(uint8_t analogPin, uint16_t maxSteps)** define the analogRead parameters.
 - **bool configure(uint16_t RZero, uint16_t RLoad)** configure the resistor values in Ohm Ω.
+Rzero is resistance of the sensor in fresh air, RLoad is the second resistor, see
+hardware setup above (and datasheet).
 
-**Determine RZero**
+Determine RZero.
 
 In the absence of contaminants in the air, the resistance is called RO (RZero).
 This baseline resistance (RO) has to be known prior to performing any operations. 
 The calibration is performed by blowing fresh air onto the sensor (cleaning any remaining 
 contaminants) and measuring the value of RS in a clean environment.
 
-This can be done by means of the example **TGS2620_determine_RZero.ino**
+Determine RZero can be done with the example **TGS2620_determine_RZero.ino**
 
 
 ### Calibration I
@@ -125,8 +126,8 @@ might differ slightly.
 |  TGS2620  |  Hydrogen   |  358,088021  |  -1,8791876  |
 |  TGS2620  |  Ethanol    |  320,799771  |  -1,5398176  |
 
-Note compatible sensors like TGS2600 and TGS2610 have different parameters,
-so for these one need to determine the parameters.
+Note compatible sensors like TGS2600 and TGS2610 the gasses have different 
+parameters, so for these others one need to determine the parameters a and b..
 
 
 - **void calibrate(float a, float b)** idem
@@ -153,7 +154,8 @@ Calibrating in a nutshell.
 
 ### getPPM()
 
-- **float getPPM(uint8_t reads = 1)** read the sensor with the internal analogPin configured in the constructor. Optional do more than one read.
+- **float getPPM(uint8_t reads = 1)** read the sensor with the internal analogPin configured 
+in the constructor. Optional do more than one read.
 Convert the raw value to PPM based upon configure and calibrate data.
 - **float getPPM(uint16_t value, uint16_t maxSteps)** read the sensor with an external ADC 
 and provide the value and the maxValue. Will convert the raw value to PPM.
