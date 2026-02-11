@@ -47,7 +47,7 @@ unittest(test_constants)
 
 unittest(test_constructor)
 {
-  TGS2620 obj(A0);
+  TGS2620 obj(A0, 1023);
 }
 
 
